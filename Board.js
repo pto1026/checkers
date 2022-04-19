@@ -1,14 +1,8 @@
-import Space from "./Space";
-import Piece from "./Piece";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Space_1 = require("./Space");
+const Piece_1 = require("./Piece");
 class Board {
-    get spaces(): any[] {
-        return this._spaces;
-    }
-    set spaces(value: any[]) {
-        this._spaces = value;
-    }
-    private _spaces: any[];
     constructor() {
         this._spaces = [];
         for (let i = 0; i < 8; i++) {
@@ -20,15 +14,22 @@ class Board {
                 if (j === 0) {
                     color = Board.colorSwitch(color);
                 }
-                this.spaces[i].push(new Space(color));
+                this.spaces[i].push(new Space_1.default(color));
                 color = Board.colorSwitch(color);
             }
         }
     }
-    private static colorSwitch(colorPointer): string {
+    get spaces() {
+        return this._spaces;
+    }
+    set spaces(value) {
+        this._spaces = value;
+    }
+    static colorSwitch(colorPointer) {
         if (colorPointer === "black") {
             return "white";
-        } else {
+        }
+        else {
             return "black";
         }
     }
@@ -37,16 +38,17 @@ class Board {
             for (let j = 0; j < 8; j++) {
                 if (i < 3) {
                     if (this.spaces[i][j].playable) {
-                        this.spaces[i][j].piece = new Piece("white");
+                        this.spaces[i][j].piece = new Piece_1.default("white");
                     }
-                } else if (i >= 5) {
+                }
+                else if (i >= 5) {
                     if (this.spaces[i][j].playable) {
-                        this.spaces[i][j].piece = new Piece("black");
+                        this.spaces[i][j].piece = new Piece_1.default("black");
                     }
                 }
             }
         }
     }
 }
-
-export default Board;
+exports.default = Board;
+//# sourceMappingURL=Board.js.map
